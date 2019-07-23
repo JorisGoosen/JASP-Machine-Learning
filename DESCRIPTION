@@ -2,9 +2,10 @@ Package: DevelopmentModule
 Type: Package
 Title: Machine Learning Module for JASP
 Version: 0.1
-Date: 2019-07-15
+Date: 2019-07-23
 Author: JASP Team
 Website: www.jasp-stats.org
 Maintainer: JASP Team <info@jasp-stats.org>
 Description: A module for Machine Learning
 License: GPL (>= 2)
+Imports: AUC, cluster, colorspace, dbscan, e1071, gbm, ggdendro, kknn, randomForest, ROCR, Rtsne, gtools, gdata

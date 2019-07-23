@@ -22,7 +22,9 @@
 		"kknn",  
 		"randomForest",
 		"ROCR",
-		"Rtsne"
+		"Rtsne",
+		"gtools",
+		"gdata"
 	],
 
 	"menu":

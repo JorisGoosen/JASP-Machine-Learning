@@ -76,7 +76,7 @@ MLClassificationBoosting <- function(jaspResults, dataset, options, ...) {
   bfit <- gbm::gbm(formula = formula, data = train, n.trees = options[["noOfTrees"]],
                           shrinkage = options[["shrinkage"]], interaction.depth = options[["intDepth"]],
                           cv.folds = noOfFolds, bag.fraction = options[["bagFrac"]], n.minobsinnode = options[["nNode"]],
-                          distribution = "multinomial")
+                          distribution = "multinomial", n.cores=1) #multiple cores breaks modules in JASP, see: INTERNAL-jasp#372
 
   if(options[["modelOpt"]] == "optimizationManual"){
     
@@ -88,7 +88,7 @@ MLClassificationBoosting <- function(jaspResults, dataset, options, ...) {
     bfit <- gbm::gbm(formula = formula, data = train, n.trees = noOfTrees,
                         shrinkage = options[["shrinkage"]], interaction.depth = options[["intDepth"]],
                         cv.folds = noOfFolds, bag.fraction = options[["bagFrac"]], n.minobsinnode = options[["nNode"]],
-                        distribution = "multinomial")
+                        distribution = "multinomial", n.cores=1) #multiple cores breaks modules in JASP, see: INTERNAL-jasp#372
 
   }
 

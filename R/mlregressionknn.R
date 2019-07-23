@@ -24,11 +24,8 @@ MLRegressionKNN <- function(jaspResults, dataset, options, state=NULL) {
 	# Check if analysis is ready to run
 	ready <- .regressionAnalysesReady(options, type = "knn")
 		
-	# Run the analysis
-	.regressionMachineLearning(dataset, options, jaspResults, ready, type = "knn")		
-
 	# create the results table
-	.regressionMachineLearningTable(options, jaspResults, ready, type = "knn")
+	.regressionMachineLearningTable(dataset, options, jaspResults, ready, type = "knn")
 
 	# Create the evaluation metrics table
 	.regressionEvaluationMetrics(dataset, options, jaspResults, ready)

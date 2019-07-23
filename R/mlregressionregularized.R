@@ -24,11 +24,8 @@ MLRegressionRegularized <- function(jaspResults, dataset, options, ...) {
 	# Check if analysis is ready to run
 	ready <- .regressionAnalysesReady(options, type = "regularized")
   
-  	# Run the analysis
-	.regressionMachineLearning(dataset, options, jaspResults, ready, type = "regularized")		
-
 	# create the results table
-	.regressionMachineLearningTable(options, jaspResults, ready, type = "regularized")
+	.regressionMachineLearningTable(dataset, options, jaspResults, ready, type = "regularized")
 
   # Create the evaluation metrics table
 	.regressionEvaluationMetrics(dataset, options, jaspResults, ready)

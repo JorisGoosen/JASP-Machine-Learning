@@ -24,11 +24,8 @@ MLRegressionBoosting <- function(jaspResults, dataset, options, ...) {
 	# Check if analysis is ready to run
 	ready <- .regressionAnalysesReady(options, type = "boosting")
   
-  # Compute (a list of) results from which tables and plots can be created
-  .regressionMachineLearning(dataset, options, jaspResults, ready, type = "boosting")
-
   # create the results table
-	.regressionMachineLearningTable(options, jaspResults, ready, type = "boosting")
+	.regressionMachineLearningTable(dataset, options, jaspResults, ready, type = "boosting")
 
   # Create the evaluation metrics table
 	.regressionEvaluationMetrics(dataset, options, jaspResults, ready)
@@ -71,7 +68,7 @@ MLRegressionBoosting <- function(jaspResults, dataset, options, ...) {
   bfit <- gbm::gbm(formula = formula, data = train, n.trees = options[["noOfTrees"]],
                                shrinkage = options[["shrinkage"]], interaction.depth = options[["intDepth"]],
                                cv.folds = noOfFolds, bag.fraction = options[["bagFrac"]],
-                               n.minobsinnode = options[["nNode"]], distribution = options[["distance"]])
+                               n.minobsinnode = options[["nNode"]], distribution = options[["distance"]], n.cores=1) #multiple cores breaks modules in JASP, see: INTERNAL-jasp#372
 
   if(options[["modelOpt"]] == "optimizationManual"){
     
@@ -83,7 +80,7 @@ MLRegressionBoosting <- function(jaspResults, dataset, options, ...) {
     bfit <- gbm::gbm(formula = formula, data = train, n.trees = noOfTrees,
                         shrinkage = options[["shrinkage"]], interaction.depth = options[["intDepth"]],
                         cv.folds = noOfFolds, bag.fraction = options[["bagFrac"]], n.minobsinnode = options[["nNode"]],
-                        distribution = options[["distance"]])
+                        distribution = options[["distance"]], n.cores=1) #multiple cores breaks modules in JASP, see: INTERNAL-jasp#372
 
   }
 

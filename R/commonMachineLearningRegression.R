@@ -87,7 +87,7 @@
   }
 }
 
-.regressionMachineLearningTable <- function(options, jaspResults, ready, type){
+.regressionMachineLearningTable <- function(dataset, options, jaspResults, ready, type){
 
   if(!is.null(jaspResults[["regressionTable"]])) return() #The options for this table didn't change so we don't need to rebuild it
 
@@ -145,8 +145,12 @@
     regressionTable$addFootnote(message = paste0("Please provide a target variable and at least ", requiredVars, " predictor variable(s)."), symbol = "<i>Note.</i>")
 
   jaspResults[["regressionTable"]] <- regressionTable
+
+  Sys.sleep(2)
   
   if(!ready)  return()
+
+  .regressionMachineLearning(dataset, options, jaspResults, ready, type=type)
 
   regressionResult <- jaspResults[["regressionResult"]]$object
   
